@@ -44,7 +44,7 @@ def predict(features: WineFeatures):
     wine_quality = int(round(prediction))
 
     return {
-        "name": "Amogh",
-        "roll_no": "2022BCS0022",
+        "name": "Mohammed Aslam",
+        "roll_no": "2022BCS0092",
         "wine_quality": wine_quality
     }

@@ -54,7 +54,8 @@ jobs:
           python -c "import json,sys; \
           m=json.load(open('metrics.json')); \
           cr2=float(m['r2']); cmse=float(m['mse']); \
-          br2=float('${{ vars.BEST_R2 }}'); bmse=float('${{ vars.BEST_MSE }}'); \
+          br2=float('${{ vars.BEST_R2 }}' or '-inf'); \
+          bmse=float('${{ vars.BEST_MSE }}' or 'inf'); \
           print(f'Current R2: {cr2}'); print(f'Current MSE: {cmse}'); \
           print(f'Best R2: {br2}'); print(f'Best MSE: {bmse}'); \
           (cr2>br2 and cmse<bmse) or (print('2022BCS0092 ---- Metric did not improve') or sys.exit(1)); \
