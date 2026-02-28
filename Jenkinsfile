@@ -62,9 +62,8 @@ pipeline {
           if (quality == null) {
             error("Prediction value missing")
           }
-          try {
-            Double.parseDouble(quality.toString())
-          } catch (NumberFormatException e) {
+          def str = quality.toString()
+          if (!(str ==~ /^-?[0-9]+(\.[0-9]+)?$/)) {
             error("Prediction value is not numeric: ${quality}")
           }
           echo "Validation passed: wine_quality=${quality}"
