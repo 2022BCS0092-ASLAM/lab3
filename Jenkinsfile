@@ -54,8 +54,8 @@ pipeline {
             returnStdout: true
           ).trim()
           echo "Valid Response: ${response}"
-          if (!response.contains("wine_quality")) {
-            error("Prediction field 'wine_quality' missing!")
+          if (!response.contains("prediction")) {
+            error("Prediction field 'prediction' missing!")
           }
           def json = readJSON text: response
           def quality = json.wine_quality
