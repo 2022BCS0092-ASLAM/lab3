@@ -59,7 +59,12 @@ pipeline {
           }
           def json = readJSON text: response
           def quality = json.wine_quality
-          if (quality == null || !quality.toString().matches(/^-?\\d+$/)) {
+          if (quality == null) {
+            error("Prediction value missing")
+          }
+          try {
+            Double.parseDouble(quality.toString())
+          } catch (NumberFormatException e) {
             error("Prediction value is not numeric: ${quality}")
           }
           echo "Validation passed: wine_quality=${quality}"
